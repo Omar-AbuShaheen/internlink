@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import StudentDashboard from './pages/StudentDashboard';
-import CompanyDashboard from './pages/CompanyDashboard';
-import AdminPanel from './pages/AdminPanel';
+import HomePage from './components/HomePage';
+import StudentDashboard from './components/StudentDashboard';
+import CompanyDashboard from './components/CompanyDashboard';
+import AdminPanel from './components/AdminPanel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
