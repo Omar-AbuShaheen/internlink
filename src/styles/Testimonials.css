@@ -1,0 +1,48 @@
+.testimonials-section {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f0f8ff;
+  }
+  
+  .testimonials-section h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #003366; /* matching the logo’s blue */
+  }
+  
+  .testimonial-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .testimonial-card {
+    background: #fff;
+    padding: 20px;
+    width: 280px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .testimonial-text {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .testimonial-stars {
+    color: #ffcc00;
+    margin-bottom: 10px;
+  }
+  
+  .testimonial-name {
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  
+  .testimonial-school {
+    font-size: 0.85rem;
+    color: #666;
+  }
+  
