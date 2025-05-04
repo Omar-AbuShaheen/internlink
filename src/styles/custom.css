@@ -3,6 +3,21 @@
     --bs-primary-rgb: 0, 51, 102;
   }
   
+  body {
+    background-color: #D8FAFD;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  footer {
+    background-color: #001871;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  
   .btn-primary {
     background-color: var(--bs-primary) !important;
     border-color: var(--bs-primary) !important;
