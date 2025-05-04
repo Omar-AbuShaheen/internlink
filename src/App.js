@@ -8,6 +8,8 @@ import NavBar from './components/NavBar';
 import HomePage from './components/HomePage';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
+import './styles/custom.css';
+
 
 function App() {
   return (
