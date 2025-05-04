@@ -11,6 +11,7 @@ import RegisterForm from './components/RegisterForm';
 import './styles/custom.css';
 import Services from './components/Services';
 import AboutUs from './components/AboutUs';
+import InternshipList from './components/InternshipList';
 
 
 
@@ -21,6 +22,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/internships" element={<InternshipList />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/services" element={<Services />} />

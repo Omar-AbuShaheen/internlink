@@ -24,6 +24,9 @@ function NavigationBar() {
             <Nav.Link as={Link} to="/" className="text-primary">
               Home
             </Nav.Link>
+            <Nav.Link as={Link} to="/internships" className="text-primary">
+            Internships
+          </Nav.Link>
             <Nav.Link as={Link} to="/services" className="text-primary">
               Services
             </Nav.Link>
