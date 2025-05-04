@@ -53,11 +53,11 @@ function HomePage() {
       <Testimonials />
 
       {/* Footer */}
-      <footer className="text-center py-4 bg-dark text-light">
-        <Container>
-          <small>© 2025 InternLink. All rights reserved. | About | Contact | Privacy Policy</small>
-        </Container>
-      </footer>
+      <footer className="homepage-footer text-center py-4">
+  <Container>
+    <small>© 2025 InternLink. All rights reserved. | About | Contact | Privacy Policy</small>
+  </Container>
+</footer>
     </div>
   );
 }
