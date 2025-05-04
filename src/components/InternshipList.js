@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const mockInternships = [
   {
@@ -40,7 +41,12 @@ function InternshipList() {
                 <Card.Title>{internship.title}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{internship.company}</Card.Subtitle>
                 <Card.Text>{internship.description}</Card.Text>
-                <Button variant="primary" size="sm">
+                <Button
+                  as={Link}
+                  to={`/internships/${internship.id}`}
+                  variant="primary"
+                  size="sm"
+                >
                   View Details
                 </Button>
               </Card.Body>
