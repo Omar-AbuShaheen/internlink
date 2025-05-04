@@ -1,3 +1,10 @@
+.homepage {
+  background-color: #D8FAFD;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .hero-section {
   background-color: #f8f9fa;
   padding: 50px 0;
@@ -22,7 +29,8 @@
 }
 
 footer {
-  background-color: #343a40;
+  background-color: #001871;  /* updated from #343a40 */
   color: #fff;
   padding: 20px 0;
+  margin-top: auto;
 }
