@@ -12,6 +12,7 @@ import './styles/custom.css';
 import Services from './components/Services';
 import AboutUs from './components/AboutUs';
 import InternshipList from './components/InternshipList';
+import InternshipDetail from './components/InternshipDetail';
 
 
 
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/internships" element={<InternshipList />} />
+          <Route path="/internships/:id" element={<InternshipDetail />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/services" element={<Services />} />
