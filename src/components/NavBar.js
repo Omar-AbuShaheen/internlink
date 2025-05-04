@@ -6,7 +6,7 @@ import '../styles/NavBar.css';
 
 function NavigationBar() {
   return (
-    <Navbar bg="light" expand="lg" className="mb-4">
+    <Navbar bg="light" expand="lg" className="mb-4 border-bottom border-primary">
       <Container>
         <Navbar.Brand as={Link} to="/">
           <img
@@ -16,14 +16,20 @@ function NavigationBar() {
             className="d-inline-block align-top"
             alt="InternLink logo"
           />{' '}
-          InternLink
+          <span className="text-primary fw-bold">InternLink</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/">Home</Nav.Link>
-            <Nav.Link as={Link} to="/services">Services</Nav.Link>
-            <Nav.Link as={Link} to="/about">About Us</Nav.Link>
+            <Nav.Link as={Link} to="/" className="text-primary">
+              Home
+            </Nav.Link>
+            <Nav.Link as={Link} to="/services" className="text-primary">
+              Services
+            </Nav.Link>
+            <Nav.Link as={Link} to="/about" className="text-primary">
+              About Us
+            </Nav.Link>
           </Nav>
           <Nav>
             <Button as={Link} to="/login" variant="outline-primary" className="me-2">
