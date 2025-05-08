@@ -1,3 +1,4 @@
+// src/components/NavigationBar.js
 import React from 'react';
 import { Navbar, Nav, Button, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -25,8 +26,8 @@ function NavigationBar() {
               Home
             </Nav.Link>
             <Nav.Link as={Link} to="/internships" className="text-primary">
-            Internships
-          </Nav.Link>
+              Internships
+            </Nav.Link>
             <Nav.Link as={Link} to="/services" className="text-primary">
               Services
             </Nav.Link>
@@ -38,8 +39,11 @@ function NavigationBar() {
             <Button as={Link} to="/login" variant="outline-primary" className="me-2">
               Sign In
             </Button>
-            <Button as={Link} to="/register" variant="primary">
+            <Button as={Link} to="/register" variant="primary" className="me-2">
               Register
+            </Button>
+            <Button as={Link} to="/student/dashboard" variant="success">
+              Dashboard
             </Button>
           </Nav>
         </Navbar.Collapse>
