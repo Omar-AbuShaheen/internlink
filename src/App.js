@@ -14,6 +14,8 @@ import AboutUs from './components/AboutUs';
 import InternshipList from './components/InternshipList';
 import InternshipDetail from './components/InternshipDetail';
 import StudentDashboard from './components/StudentDashboard';
+import CompanyDashboard from './components/CompanyDashboard';
+
 
 
 
@@ -28,6 +30,8 @@ function App() {
           <Route path="/internships/:id" element={<InternshipDetail />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/student/dashboard" element={<StudentDashboard />} />
+          <Route path="/company/dashboard" element={<CompanyDashboard />} />
+
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/services" element={<Services />} />
           <Route path="/about" element={<AboutUs />} />
