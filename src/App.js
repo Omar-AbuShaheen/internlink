@@ -16,6 +16,8 @@ import InternshipDetail from './components/InternshipDetail';
 import StudentDashboard from './components/StudentDashboard';
 import CompanyDashboard from './components/CompanyDashboard';
 import AdminPanel from './components/AdminPanel';
+import ProfilePage from './components/ProfilePage';
+
 
 
 
@@ -34,6 +36,7 @@ function App() {
           <Route path="/student/dashboard" element={<StudentDashboard />} />
           <Route path="/company/dashboard" element={<CompanyDashboard />} />
           <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/profile" element={<ProfilePage />} />
 
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/services" element={<Services />} />
