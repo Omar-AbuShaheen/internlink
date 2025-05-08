@@ -1,6 +1,5 @@
-// src/components/NavigationBar.js
 import React from 'react';
-import { Navbar, Nav, Button, Container } from 'react-bootstrap';
+import { Navbar, Nav, Button, Container, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import logo from '../images/logo.png';
 import '../styles/NavBar.css';
@@ -34,16 +33,23 @@ function NavigationBar() {
             <Nav.Link as={Link} to="/about" className="text-primary">
               About Us
             </Nav.Link>
+
+            <NavDropdown title="Clients" id="clients-dropdown">
+              <NavDropdown.Item as={Link} to="/student/dashboard">
+                Student
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/company/dashboard">
+                Company
+              </NavDropdown.Item>
+            </NavDropdown>
           </Nav>
+
           <Nav>
             <Button as={Link} to="/login" variant="outline-primary" className="me-2">
               Sign In
             </Button>
-            <Button as={Link} to="/register" variant="primary" className="me-2">
+            <Button as={Link} to="/register" variant="primary">
               Register
-            </Button>
-            <Button as={Link} to="/student/dashboard" variant="success">
-              Dashboard
             </Button>
           </Nav>
         </Navbar.Collapse>
