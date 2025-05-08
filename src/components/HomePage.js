@@ -19,7 +19,9 @@ function HomePage() {
           <h2 className="text-center mb-4">Featured Internships</h2>
           <Row>
             <Col md={4} className="mb-3">
-              <Card className="h-100 text-center">
+              <Card className="h-100 text-center shadow-sm">
+                {/* Optional logo image */}
+                {/* <Card.Img variant="top" src="/images/marketing-logo.png" style={{ height: '120px', objectFit: 'contain' }} /> */}
                 <Card.Body>
                   <Card.Title>Marketing Intern</Card.Title>
                   <Card.Text>Work with a top agency to grow your skills.</Card.Text>
@@ -27,8 +29,10 @@ function HomePage() {
                 </Card.Body>
               </Card>
             </Col>
+
             <Col md={4} className="mb-3">
-              <Card className="h-100 text-center">
+              <Card className="h-100 text-center shadow-sm">
+                {/* <Card.Img variant="top" src="/images/tech-logo.png" style={{ height: '120px', objectFit: 'contain' }} /> */}
                 <Card.Body>
                   <Card.Title>Software Engineer Intern</Card.Title>
                   <Card.Text>Join an exciting tech startup this summer.</Card.Text>
@@ -36,8 +40,10 @@ function HomePage() {
                 </Card.Body>
               </Card>
             </Col>
+
             <Col md={4} className="mb-3">
-              <Card className="h-100 text-center">
+              <Card className="h-100 text-center shadow-sm">
+                {/* <Card.Img variant="top" src="/images/design-logo.png" style={{ height: '120px', objectFit: 'contain' }} /> */}
                 <Card.Body>
                   <Card.Title>Design Intern</Card.Title>
                   <Card.Text>Collaborate on creative projects with top brands.</Card.Text>
@@ -54,10 +60,10 @@ function HomePage() {
 
       {/* Footer */}
       <footer className="homepage-footer text-center py-4">
-  <Container>
-    <small>© 2025 InternLink. All rights reserved. | About | Contact | Privacy Policy</small>
-  </Container>
-</footer>
+        <Container>
+          <small>© 2025 InternLink. All rights reserved. | About | Contact | Privacy Policy</small>
+        </Container>
+      </footer>
     </div>
   );
 }

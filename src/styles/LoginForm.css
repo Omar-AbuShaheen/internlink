@@ -1,0 +1,28 @@
+/* src/components/LoginForm.css */
+.card {
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background-color: #002f6c;
+  border-color: #002f6c;
+}
+
+.btn-primary:hover {
+  background-color: #001d45;
+}
+
+.form-control {
+  border-radius: 8px;
+}
+/* styles/LoginForm.css */
+.login-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #e6fcff; /* optional background */
+  padding: 1rem;
+}
+
