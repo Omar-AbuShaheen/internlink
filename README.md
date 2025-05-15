@@ -1,70 +1,143 @@
-# Getting Started with Create React App
+# InternLink - Internship Management Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+InternLink is a comprehensive platform that connects students with companies for internship opportunities. It streamlines the internship application process and provides tools for both students and companies to manage their internship programs effectively.
 
-## Available Scripts
+## 🌟 Features
 
-In the project directory, you can run:
+### For Students
+- Browse and search internship opportunities
+- Apply to internships with resume and cover letter
+- Track application status
+- Manage profile and portfolio
+- Receive notifications for application updates
 
-### `npm start`
+### For Companies
+- Post and manage internship listings
+- Review and process applications
+- Manage candidate pipeline
+- Company profile management
+- Analytics dashboard
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### For Administrators
+- User management
+- Content moderation
+- Platform analytics
+- System configuration
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Tech Stack
 
-### `npm test`
+### Frontend
+- React.js
+- Bootstrap
+- React Router
+- Axios
+- Redux (for state management)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- JWT Authentication
+- Mongoose ODM
 
-### `npm run build`
+## 🚀 Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
+- Node.js (v14 or higher)
+- MongoDB
+- npm or yarn
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone the repository
+```bash
+git clone https://github.com/yourusername/internlink.git
+cd internlink
+```
 
-### `npm run eject`
+2. Install Frontend Dependencies
+```bash
+cd frontend
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. Install Backend Dependencies
+```bash
+cd ../backend
+npm install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. Environment Setup
+   - Create `.env` file in backend directory:
+   ```
+   PORT=5000
+   MONGODB_URI=mongodb://localhost:27017/internlink
+   JWT_SECRET=your_jwt_secret_key_here
+   ```
+   - Create `.env` file in frontend directory:
+   ```
+   REACT_APP_API_URL=http://localhost:5000/api
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+5. Start Development Servers
+   - Backend:
+   ```bash
+   cd backend
+   npm run dev
+   ```
+   - Frontend:
+   ```bash
+   cd frontend
+   npm start
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 📁 Project Structure
 
-## Learn More
+```
+internlink/
+├── frontend/                # React frontend
+│   ├── public/             # Static files
+│   └── src/               # Source files
+│       ├── components/    # React components
+│       ├── pages/        # Page components
+│       ├── services/     # API services
+│       ├── utils/        # Utility functions
+│       └── styles/       # CSS files
+│
+└── backend/               # Node.js backend
+    ├── src/
+    │   ├── config/      # Configuration files
+    │   ├── controllers/ # Route controllers
+    │   ├── middleware/  # Custom middleware
+    │   ├── models/      # Database models
+    │   └── routes/      # API routes
+    └── uploads/         # File uploads
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🔒 Security Features
+- JWT Authentication
+- Password Hashing
+- Input Validation
+- CORS Protection
+- Rate Limiting
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🤝 Contributing
 
-### Code Splitting
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📝 License
 
-### Analyzing the Bundle Size
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 👥 Authors
 
-### Making a Progressive Web App
+- Your Name - Initial work
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🙏 Acknowledgments
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Thanks to all contributors
+- Inspired by the need for better internship management systems
