@@ -18,6 +18,7 @@ import CompanyDashboard from './components/CompanyDashboard';
 import AdminPanel from './components/AdminPanel';
 import ProfilePage from './components/ProfilePage';
 import Footer from './components/Footer';
+import PostInternshipForm from './components/PostInternshipForm';
 
 
 
@@ -42,6 +43,7 @@ function App() {
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/services" element={<Services />} />
           <Route path="/about" element={<AboutUs />} />
+          <Route path="/company/dashboard/post-job" element={<PostInternshipForm />} />
         </Routes>
         <Footer />
       </div>
