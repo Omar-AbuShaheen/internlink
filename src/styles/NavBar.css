@@ -11,3 +11,124 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
+.main-navbar {
+  background: var(--background) !important;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  border-bottom: 1px solid #e3e6f0;
+  z-index: 100;
+}
+
+.brand-title {
+  letter-spacing: 1px;
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--primary) !important;
+}
+
+.nav-link-custom {
+  color: var(--text-main) !important;
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin-right: 1rem;
+  transition: color 0.2s, background 0.2s;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+}
+
+.nav-link-custom:hover, .nav-link-custom:focus, .nav-link-custom.active {
+  color: var(--primary) !important;
+  background: var(--accent);
+  text-decoration: none;
+}
+
+.navbar-nav .dropdown-menu {
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid #e3e6f0;
+}
+
+.navbar-nav .dropdown-item {
+  font-weight: 500;
+  color: var(--text-main);
+  transition: background 0.2s, color 0.2s;
+}
+
+.navbar-nav .dropdown-item:hover, .navbar-nav .dropdown-item:focus {
+  background: var(--accent);
+  color: var(--primary);
+}
+
+.navbar-toggler {
+  border-radius: 8px;
+  border: 1px solid var(--primary);
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 2px #0d6efd33;
+}
+
+.navbar .btn {
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 999px;
+  transition: box-shadow 0.2s;
+}
+
+.navbar .btn:focus {
+  box-shadow: 0 0 0 2px #0d6efd33;
+}
+
+@media (max-width: 991px) {
+  .main-navbar {
+    padding: 0.5rem 0.5rem;
+  }
+  .brand-title {
+    font-size: 1.5rem;
+  }
+  .nav-link-custom {
+    margin-right: 0;
+    padding: 0.75rem 1rem;
+  }
+}
+
+.main-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.main-nav-links .nav-link-custom,
+.main-nav-links .dropdown {
+  margin-right: 0 !important;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+@media (min-width: 992px) {
+  .main-nav-links {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+  .navbar .align-items-center {
+    margin-left: 2rem !important;
+  }
+}
+
+/* Ensure dropdown aligns with other links */
+.main-nav-links .dropdown-toggle {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: #212529 !important;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  transition: color 0.2s, background 0.2s;
+}
+
+.main-nav-links .dropdown-toggle:hover, .main-nav-links .dropdown-toggle:focus {
+  color: #0d6efd !important;
+  background: rgba(13,110,253,0.08);
+}
+  

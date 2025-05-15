@@ -17,6 +17,7 @@ import StudentDashboard from './components/StudentDashboard';
 import CompanyDashboard from './components/CompanyDashboard';
 import AdminPanel from './components/AdminPanel';
 import ProfilePage from './components/ProfilePage';
+import Footer from './components/Footer';
 
 
 
@@ -42,6 +43,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/about" element={<AboutUs />} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );

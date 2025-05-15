@@ -1,0 +1,39 @@
+.internship-detail-container {
+  background: var(--background);
+  border-radius: 18px;
+}
+
+.internship-detail-card {
+  border: none;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(13, 110, 253, 0.08), 0 1.5px 6px rgba(0,0,0,0.04);
+  background: #fff;
+  overflow: hidden;
+}
+
+.internship-detail-header img {
+  background: var(--background);
+  padding: 8px;
+}
+
+.internship-detail-header h3 {
+  font-weight: 700;
+  font-size: 1.35rem;
+}
+
+.internship-detail-card .badge {
+  font-size: 0.98em;
+  border-radius: 999px;
+  padding: 0.45em 1.1em;
+  margin-bottom: 0.2em;
+}
+
+@media (max-width: 991px) {
+  .internship-detail-container {
+    border-radius: 8px;
+    padding: 0.5rem;
+  }
+  .internship-detail-card {
+    border-radius: 10px;
+  }
+} 
