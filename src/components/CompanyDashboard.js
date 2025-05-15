@@ -41,7 +41,16 @@ function CompanyDashboard() {
 
   return (
     <Container className="company-dashboard py-4">
-      <h2 className="mb-4">🏢 Welcome to your Company Dashboard!</h2>
+      <div className="d-flex align-items-center mb-3">
+        <img
+          src="https://ui-avatars.com/api/?name=Techify&background=0d6efd&color=fff&rounded=true&size=48"
+          alt="Company Logo"
+          width={48}
+          height={48}
+          className="me-3 border border-primary bg-white rounded-circle shadow-sm"
+        />
+        <h2 className="mb-0">🏢 Welcome, <span className="text-primary">Techify</span>!</h2>
+      </div>
 
       {/* Stats Cards */}
       <Row className="mb-4 g-3">
