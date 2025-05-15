@@ -36,15 +36,21 @@ InternLink is a comprehensive platform that connects students with companies for
 ### Backend
 - Node.js
 - Express.js
-- MongoDB
-- JWT Authentication
-- Mongoose ODM
+- PostgreSQL
+- DBeaver (Database GUI)
+
+### Authentication
+- JWT (JSON Web Tokens)
+- bcrypt
+
+### File Upload
+- Multer
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 - Node.js (v14 or higher)
-- MongoDB
+- PostgreSQL
 - npm or yarn
 
 ### Installation
@@ -71,7 +77,7 @@ npm install
    - Create `.env` file in backend directory:
    ```
    PORT=5000
-   MONGODB_URI=mongodb://localhost:27017/internlink
+   PG_URI=postgresql://username:password@localhost:5432/internlink
    JWT_SECRET=your_jwt_secret_key_here
    ```
    - Create `.env` file in frontend directory:
@@ -141,3 +147,27 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Thanks to all contributors
 - Inspired by the need for better internship management systems
+
+## Database Schema
+
+The application uses PostgreSQL with the following main tables:
+- users
+- internships
+- applications
+
+## API Endpoints
+
+### Authentication
+- POST /api/auth/register
+- POST /api/auth/login
+
+### Internships
+- GET /api/internships
+- POST /api/internships
+- GET /api/internships/:id
+- PUT /api/internships/:id
+- DELETE /api/internships/:id
+
+### Applications
+- POST /api/internships/:id/apply
+- PUT /api/applications/:id/status
