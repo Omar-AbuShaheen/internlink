@@ -155,7 +155,16 @@ function StudentDashboard() {
 
   return (
     <Container className="student-dashboard py-4">
-      <h2 className="mb-4">👋 Welcome back, Student!</h2>
+      <div className="d-flex align-items-center mb-3">
+        <img
+          src="https://ui-avatars.com/api/?name=Omar&background=0d6efd&color=fff&rounded=true&size=48"
+          alt="User Avatar"
+          width={48}
+          height={48}
+          className="me-3 border border-primary bg-white rounded-circle shadow-sm"
+        />
+        <h2 className="mb-0">👋 Welcome back, <span className="text-primary">Omar</span>!</h2>
+      </div>
 
       {/* Welcome Message */}
       <Alert variant="primary" className="d-flex align-items-center mb-4" style={{ background: 'linear-gradient(90deg, #e3f2fd 60%, #fff 100%)', border: 'none', fontSize: '1.1rem' }}>
