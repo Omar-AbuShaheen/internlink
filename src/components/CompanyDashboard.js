@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Button, Row, Col, Container, Badge, Alert } from 'react-bootstrap';
-import { FaClipboardList, FaCheckCircle, FaTimesCircle, FaUserPlus, FaBell, FaBuilding, FaUserTie } from 'react-icons/fa';
+import { FaClipboardList, FaCheckCircle, FaTimesCircle, FaUserPlus, FaBell, FaBuilding, FaUserTie, FaPlus, FaUsers, FaEdit, FaCalendarAlt } from 'react-icons/fa';
 import '../styles/CompanyDashboard.css';
 
 const mockListings = [
@@ -27,6 +27,11 @@ const mockApplications = [
   { id: 2, student: 'Ali Hossam', internship: 'Business Analyst Intern', status: 'Accepted', date: '2024-05-28' },
 ];
 
+const mockInterviews = [
+  { id: 1, candidate: 'Omar Abu Shaheen', position: 'Frontend Developer Intern', date: '2024-06-20', time: '11:00 AM', type: 'Virtual' },
+  { id: 2, candidate: 'Ali Hossam', position: 'Business Analyst Intern', date: '2024-06-22', time: '2:00 PM', type: 'On-site' },
+];
+
 function CompanyDashboard() {
   const stats = [
     { label: 'Total Postings', value: 8, icon: <FaClipboardList />, color: 'primary' },
@@ -38,6 +43,15 @@ function CompanyDashboard() {
     { id: 1, message: 'You have 3 new applicants for Frontend Developer Intern.', type: 'info' },
     { id: 2, message: 'Business Analyst Intern listing closed.', type: 'secondary' },
   ];
+
+  // Placeholder handlers
+  const handlePostNew = () => alert('Post New Internship clicked!');
+  const handleViewApplicants = () => alert('View Applicants clicked!');
+  const handleEditProfile = () => alert('Edit Company Profile clicked!');
+  const handleEditListing = (id) => alert(`Edit listing ${id}`);
+  const handleDeleteListing = (id) => alert(`Delete listing ${id}`);
+  const handleViewProfile = (student) => alert(`View profile of ${student}`);
+  const handleMessage = (student) => alert(`Message to ${student}`);
 
   return (
     <Container className="company-dashboard py-4">
@@ -51,6 +65,27 @@ function CompanyDashboard() {
         />
         <h2 className="mb-0">🏢 Welcome, <span className="text-primary">Techify</span>!</h2>
       </div>
+
+      {/* Quick Actions */}
+      <Card className="mb-4 shadow-sm p-3 border-0 bg-light">
+        <Row className="g-2 align-items-center">
+          <Col md={4} sm={12} className="mb-2 mb-md-0">
+            <Button variant="primary" className="w-100" onClick={handlePostNew}>
+              <FaPlus className="me-2" /> Post New Internship
+            </Button>
+          </Col>
+          <Col md={4} sm={12} className="mb-2 mb-md-0">
+            <Button variant="info" className="w-100 text-white" onClick={handleViewApplicants}>
+              <FaUsers className="me-2" /> View Applicants
+            </Button>
+          </Col>
+          <Col md={4} sm={12}>
+            <Button variant="outline-dark" className="w-100" onClick={handleEditProfile}>
+              <FaEdit className="me-2" /> Edit Company Profile
+            </Button>
+          </Col>
+        </Row>
+      </Card>
 
       {/* Stats Cards */}
       <Row className="mb-4 g-3">
@@ -67,17 +102,37 @@ function CompanyDashboard() {
         ))}
       </Row>
 
+      {/* Upcoming Interviews */}
+      <Card className="mb-4 shadow-sm border-0">
+        <Card.Body>
+          <h5 className="mb-3"><FaCalendarAlt className="me-2 text-primary" />Upcoming Interviews</h5>
+          {mockInterviews.length === 0 ? (
+            <div className="text-muted">No upcoming interviews.</div>
+          ) : (
+            <Row>
+              {mockInterviews.map((interview) => (
+                <Col md={6} key={interview.id} className="mb-2">
+                  <Card className="h-100 border-info">
+                    <Card.Body>
+                      <div className="fw-bold mb-1">{interview.candidate}</div>
+                      <div className="text-muted mb-1">{interview.position}</div>
+                      <div className="mb-1"><FaCalendarAlt className="me-1 text-info" /> {interview.date} at {interview.time}</div>
+                      <div className="mb-1"><Badge bg={interview.type === 'Virtual' ? 'info' : 'secondary'}>{interview.type}</Badge></div>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          )}
+        </Card.Body>
+      </Card>
+
       {/* Notifications */}
       {notifications.map((note) => (
         <Alert key={note.id} variant={note.type} className="d-flex align-items-center">
           <FaBell className="me-2" /> {note.message}
         </Alert>
       ))}
-
-      <div className="d-flex justify-content-end mb-4 gap-2">
-        <Button variant="primary">+ Post New Internship</Button>
-        <Button variant="outline-secondary">View Company Profile</Button>
-      </div>
 
       {/* My Internship Listings */}
       <h4 className="mb-3">📋 My Internship Listings</h4>
@@ -90,10 +145,10 @@ function CompanyDashboard() {
                 <Card.Text>{item.description}</Card.Text>
                 <Card.Text className="text-muted">Deadline: {item.deadline}</Card.Text>
                 <Card.Text><FaUserPlus className="me-1 text-info" /> {item.applicants} Applicants</Card.Text>
-                <Button variant="outline-secondary" size="sm" className="me-2">
+                <Button variant="outline-secondary" size="sm" className="me-2" onClick={() => handleEditListing(item.id)}>
                   Edit
                 </Button>
-                <Button variant="danger" size="sm">
+                <Button variant="danger" size="sm" onClick={() => handleDeleteListing(item.id)}>
                   Delete
                 </Button>
               </Card.Body>
@@ -118,8 +173,8 @@ function CompanyDashboard() {
                     Status: <Badge bg={app.status === 'Accepted' ? 'success' : app.status === 'Under Review' ? 'info' : 'secondary'}>{app.status}</Badge>
                     <span className="ms-3 text-muted small">{app.date}</span>
                   </Card.Text>
-                  <Button variant="primary" size="sm" className="me-2">View Profile</Button>
-                  <Button variant="outline-success" size="sm">Message</Button>
+                  <Button variant="primary" size="sm" className="me-2" onClick={() => handleViewProfile(app.student)}>View Profile</Button>
+                  <Button variant="outline-success" size="sm" onClick={() => handleMessage(app.student)}>Message</Button>
                 </Card.Body>
               </Card>
             </Col>
