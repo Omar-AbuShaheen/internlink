@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Form, Button, Card, Alert } from 'react-bootstrap';
+import { Form, Button, Card, Alert, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-// import '../styles/RegisterForm.css';
+import logo from '../images/logo.png';
+import '../styles/LoginForm.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function RegisterForm() {
@@ -22,13 +23,27 @@ function RegisterForm() {
   };
 
   return (
-    <div className="login-wrapper">
-      <Card className="p-4" style={{ width: '100%', maxWidth: '400px' }}>
-        <h3 className="text-center mb-3">Register</h3>
+    <div className="auth-bg d-flex align-items-center justify-content-center min-vh-100">
+      <Card className="auth-card p-4 shadow-lg">
+        <div className="text-center mb-3">
+          <img src={logo} alt="InternLink Logo" width={56} height={56} className="mb-2 rounded-circle border border-primary bg-white" />
+          <h3 className="mb-1">Register</h3>
+          <p className="text-muted mb-0">Join InternLink to discover internships and connect with top companies.</p>
+        </div>
 
-        <p className="text-muted text-center">
-          Join InternLink to discover internships and connect with top companies.
-        </p>
+        {/* Social Login Buttons (demo only) */}
+        <Row className="mb-3 g-2">
+          <Col xs={12} sm={6}>
+            <Button variant="outline-danger" className="w-100 mb-2">
+              <i className="fab fa-google me-2"></i> Google
+            </Button>
+          </Col>
+          <Col xs={12} sm={6}>
+            <Button variant="outline-primary" className="w-100 mb-2">
+              <i className="fab fa-linkedin me-2"></i> LinkedIn
+            </Button>
+          </Col>
+        </Row>
 
         {error && <Alert variant="danger">{error}</Alert>}
 
@@ -93,7 +108,7 @@ function RegisterForm() {
             </div>
           </Form.Group>
 
-          <Button type="submit" className="w-100" variant="success">
+          <Button type="submit" className="w-100 mb-2" variant="success">
             Register
           </Button>
         </Form>

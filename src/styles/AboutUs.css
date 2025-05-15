@@ -1,0 +1,36 @@
+.aboutus-bg {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--background) 100%);
+  min-height: 100vh;
+}
+
+.aboutus-card {
+  border: none;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(13, 110, 253, 0.08), 0 1.5px 6px rgba(0,0,0,0.04);
+  background: #fff;
+  overflow: hidden;
+}
+
+.aboutus-card h2 {
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.aboutus-card .lead {
+  color: var(--text-muted);
+}
+
+.aboutus-card .fw-bold {
+  color: var(--primary);
+}
+
+.aboutus-card .text-primary {
+  color: var(--primary) !important;
+}
+
+@media (max-width: 991px) {
+  .aboutus-card {
+    border-radius: 10px;
+    padding: 1rem;
+  }
+} 
