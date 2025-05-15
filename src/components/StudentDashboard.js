@@ -157,6 +157,14 @@ function StudentDashboard() {
     <Container className="student-dashboard py-4">
       <h2 className="mb-4">👋 Welcome back, Student!</h2>
 
+      {/* Welcome Message */}
+      <Alert variant="primary" className="d-flex align-items-center mb-4" style={{ background: 'linear-gradient(90deg, #e3f2fd 60%, #fff 100%)', border: 'none', fontSize: '1.1rem' }}>
+        <i className="fa-solid fa-hand-sparkles me-3 fa-lg text-primary"></i>
+        <div>
+          <strong>Welcome to your dashboard!</strong> Here you can track your applications, discover new opportunities, and manage your profile. Let's make your internship journey a success!
+        </div>
+      </Alert>
+
       {/* Stats Cards */}
       <Row className="mb-4 g-3">
         {stats.map((stat, i) => (
