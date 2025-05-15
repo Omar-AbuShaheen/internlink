@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Button, Row, Col, Card } from 'react-bootstrap';
 import { FaSearch, FaBuilding, FaUsers, FaGraduationCap } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import Testimonials from './Testimonials';
 import '../styles/HomePage.css';
 // Import images
@@ -10,6 +11,24 @@ import techLogo from '../images/tech-logo.png';
 import designLogo from '../images/design-logo.png';
 
 function HomePage() {
+  const navigate = useNavigate();
+
+  const handleFindInternships = () => {
+    navigate('/internships');
+  };
+
+  const handlePostJob = () => {
+    navigate('/company/dashboard/post-job');
+  };
+
+  const handleApplyNow = (internshipId) => {
+    navigate(`/internships/${internshipId}`);
+  };
+
+  const handleGetStarted = () => {
+    navigate('/register');
+  };
+
   return (
     <div className="homepage">
       {/* Hero Section */}
@@ -19,8 +38,22 @@ function HomePage() {
             <h1 className="display-3 fw-bold text-white mb-4">Launch Your Career Journey</h1>
             <p className="lead text-white mb-5">Connect with leading companies and discover opportunities that shape your future</p>
             <div className="d-flex gap-3 justify-content-center">
-              <Button variant="primary" size="lg" className="px-4 py-2">Find Internships</Button>
-              <Button variant="outline-light" size="lg" className="px-4 py-2">Post a Job</Button>
+              <Button 
+                variant="primary" 
+                size="lg" 
+                className="px-4 py-2"
+                onClick={handleFindInternships}
+              >
+                Find Internships
+              </Button>
+              <Button 
+                variant="outline-light" 
+                size="lg" 
+                className="px-4 py-2"
+                onClick={handlePostJob}
+              >
+                Post a Job
+              </Button>
             </div>
           </Container>
         </div>
@@ -77,7 +110,13 @@ function HomePage() {
                   <Card.Text className="mb-4">Work with a top agency to grow your skills and build your portfolio.</Card.Text>
                   <div className="d-flex justify-content-between align-items-center">
                     <span className="location">New York, NY</span>
-                    <Button variant="primary" className="apply-btn">Apply Now</Button>
+                    <Button 
+                      variant="primary" 
+                      className="apply-btn"
+                      onClick={() => handleApplyNow('marketing-intern')}
+                    >
+                      Apply Now
+                    </Button>
                   </div>
                 </Card.Body>
               </Card>
@@ -93,7 +132,13 @@ function HomePage() {
                   <Card.Text className="mb-4">Join an exciting tech startup and work on cutting-edge projects.</Card.Text>
                   <div className="d-flex justify-content-between align-items-center">
                     <span className="location">San Francisco, CA</span>
-                    <Button variant="primary" className="apply-btn">Apply Now</Button>
+                    <Button 
+                      variant="primary" 
+                      className="apply-btn"
+                      onClick={() => handleApplyNow('software-engineer-intern')}
+                    >
+                      Apply Now
+                    </Button>
                   </div>
                 </Card.Body>
               </Card>
@@ -109,7 +154,13 @@ function HomePage() {
                   <Card.Text className="mb-4">Collaborate on creative projects with industry-leading brands.</Card.Text>
                   <div className="d-flex justify-content-between align-items-center">
                     <span className="location">Los Angeles, CA</span>
-                    <Button variant="primary" className="apply-btn">Apply Now</Button>
+                    <Button 
+                      variant="primary" 
+                      className="apply-btn"
+                      onClick={() => handleApplyNow('design-intern')}
+                    >
+                      Apply Now
+                    </Button>
                   </div>
                 </Card.Body>
               </Card>
@@ -127,7 +178,14 @@ function HomePage() {
               <p className="text-white-50 mb-0">Join thousands of students who have found their dream internships through InternLink.</p>
             </Col>
             <Col md={4} className="text-md-end">
-              <Button variant="light" size="lg" className="px-4">Get Started</Button>
+              <Button 
+                variant="light" 
+                size="lg" 
+                className="px-4"
+                onClick={handleGetStarted}
+              >
+                Get Started
+              </Button>
             </Col>
           </Row>
         </Container>
@@ -135,8 +193,6 @@ function HomePage() {
 
       {/* Testimonials Section */}
       <Testimonials />
-
-    
     </div>
   );
 }
