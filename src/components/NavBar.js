@@ -77,6 +77,13 @@ function NavigationBar() {
             >
               About Us
             </Nav.Link>
+            <Nav.Link 
+              onClick={() => handleNavLinkClick('/sitemap')} 
+              className="nav-link-custom"
+              style={{ cursor: 'pointer' }}
+            >
+              Site Map
+            </Nav.Link>
             <NavDropdown 
               title="Clients" 
               id="clients-dropdown" 
