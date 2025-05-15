@@ -33,8 +33,10 @@ yarn-error.log*
 Thumbs.db
 
 # Backend specific
-backend/uploads/
-backend/logs/
+backend/uploads/*
+!backend/uploads/logos/.gitkeep
+!backend/uploads/resumes/.gitkeep
+!backend/uploads/others/.gitkeep
 
 # Frontend specific
 frontend/.env
