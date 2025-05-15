@@ -20,6 +20,7 @@ import ProfilePage from './components/ProfilePage';
 import Footer from './components/Footer';
 import PostInternshipForm from './components/PostInternshipForm';
 import SiteMap from './components/SiteMap';
+import NotFound from './components/NotFound';
 
 
 
@@ -46,6 +47,7 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/company/dashboard/post-job" element={<PostInternshipForm />} />
           <Route path="/sitemap" element={<SiteMap />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </div>
