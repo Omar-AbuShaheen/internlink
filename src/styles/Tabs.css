@@ -1,0 +1,130 @@
+.tabs-container {
+  width: 100%;
+}
+
+.tabs-header {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border-color, #e9ecef);
+  margin-bottom: 1rem;
+}
+
+/* Default variant */
+.tabs-container.default .tab-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.tabs-container.default .tab-button.active {
+  color: var(--primary);
+}
+
+.tabs-container.default .tab-button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--primary);
+}
+
+/* Pills variant */
+.tabs-container.pills .tab-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 2rem;
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tabs-container.pills .tab-button.active {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* Underline variant */
+.tabs-container.underline .tab-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.tabs-container.underline .tab-button.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+/* Full width variant */
+.tabs-container.full-width .tabs-header {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+.tabs-container.full-width .tab-button {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Tab content */
+.tab-panel {
+  display: none;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+/* Tab icons and badges */
+.tab-icon {
+  margin-right: 0.5rem;
+}
+
+.tab-badge {
+  margin-left: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--primary);
+  color: white;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .tabs-header {
+    flex-wrap: wrap;
+  }
+  
+  .tab-button {
+    padding: 0.5rem 1rem;
+  }
+  
+  .tabs-container.full-width .tabs-header {
+    grid-template-columns: 1fr;
+  }
+} 
