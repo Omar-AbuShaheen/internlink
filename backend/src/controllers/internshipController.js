@@ -1,5 +1,7 @@
 const Internship = require('../models/Internship');
 const { validationResult } = require('express-validator');
+const fs = require('fs').promises;
+const path = require('path');
 
 // Create new internship
 exports.createInternship = async (req, res) => {
@@ -11,12 +13,17 @@ exports.createInternship = async (req, res) => {
 
     const internship = new Internship({
       ...req.body,
-      company: req.user._id
+      company: req.user._id,
+      logo: req.file ? `/uploads/logos/${req.file.filename}` : null
     });
 
     await internship.save();
     res.status(201).json(internship);
   } catch (error) {
+    // If there's an error, remove uploaded file
+    if (req.file) {
+      await fs.unlink(req.file.path).catch(console.error);
+    }
     res.status(500).json({ message: 'Server error' });
   }
 };
@@ -90,14 +97,26 @@ exports.updateInternship = async (req, res) => {
       return res.status(403).json({ message: 'Not authorized' });
     }
 
+    // If new logo is uploaded, delete old one
+    if (req.file && internship.logo) {
+      const oldLogoPath = path.join(__dirname, '../../', internship.logo);
+      await fs.unlink(oldLogoPath).catch(console.error);
+    }
+
     const updatedInternship = await Internship.findByIdAndUpdate(
       req.params.id,
-      { $set: req.body },
+      { 
+        ...req.body,
+        logo: req.file ? `/uploads/logos/${req.file.filename}` : internship.logo
+      },
       { new: true }
     );
 
     res.json(updatedInternship);
   } catch (error) {
+    if (req.file) {
+      await fs.unlink(req.file.path).catch(console.error);
+    }
     res.status(500).json({ message: 'Server error' });
   }
 };
@@ -113,6 +132,24 @@ exports.deleteInternship = async (req, res) => {
 
     if (internship.company.toString() !== req.user._id.toString()) {
       return res.status(403).json({ message: 'Not authorized' });
+    }
+
+    // Delete logo file
+    if (internship.logo) {
+      const logoPath = path.join(__dirname, '../../', internship.logo);
+      await fs.unlink(logoPath).catch(console.error);
+    }
+
+    // Delete application files
+    for (const application of internship.applications) {
+      if (application.resume) {
+        const resumePath = path.join(__dirname, '../../', application.resume);
+        await fs.unlink(resumePath).catch(console.error);
+      }
+      if (application.coverLetter) {
+        const coverLetterPath = path.join(__dirname, '../../', application.coverLetter);
+        await fs.unlink(coverLetterPath).catch(console.error);
+      }
     }
 
     await internship.remove();
@@ -146,13 +183,21 @@ exports.applyForInternship = async (req, res) => {
 
     internship.applications.push({
       student: req.user._id,
-      resume: req.body.resume,
-      coverLetter: req.body.coverLetter
+      resume: req.files.resume ? `/uploads/resumes/${req.files.resume[0].filename}` : null,
+      coverLetter: req.files.coverLetter ? `/uploads/others/${req.files.coverLetter[0].filename}` : null
     });
 
     await internship.save();
     res.json({ message: 'Application submitted successfully' });
   } catch (error) {
+    // If there's an error, remove uploaded files
+    if (req.files) {
+      for (const field in req.files) {
+        for (const file of req.files[field]) {
+          await fs.unlink(file.path).catch(console.error);
+        }
+      }
+    }
     res.status(500).json({ message: 'Server error' });
   }
 };

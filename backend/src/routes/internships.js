@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { check } = require('express-validator');
 const { auth, checkRole } = require('../middleware/auth');
+const upload = require('../middleware/upload');
 const {
   createInternship,
   getInternships,
@@ -20,6 +21,7 @@ router.post(
   [
     auth,
     checkRole(['company']),
+    upload.single('logo'),
     [
       check('title', 'Title is required').not().isEmpty(),
       check('description', 'Description is required').not().isEmpty(),
@@ -51,6 +53,7 @@ router.put(
   [
     auth,
     checkRole(['company']),
+    upload.single('logo'),
     [
       check('title', 'Title is required').not().isEmpty(),
       check('description', 'Description is required').not().isEmpty(),
@@ -77,6 +80,10 @@ router.post(
   [
     auth,
     checkRole(['student']),
+    upload.fields([
+      { name: 'resume', maxCount: 1 },
+      { name: 'coverLetter', maxCount: 1 }
+    ]),
     [
       check('resume', 'Resume is required').not().isEmpty(),
       check('coverLetter', 'Cover letter is required').not().isEmpty()
