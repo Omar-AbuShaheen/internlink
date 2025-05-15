@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
 const { validationResult } = require('express-validator');
+const bcrypt = require('bcryptjs');
 
 // Generate JWT token
 const generateToken = (userId) => {
@@ -17,33 +17,35 @@ exports.register = async (req, res) => {
 
     const { email, password, role, profile } = req.body;
 
-    // Check if user already exists
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ message: 'User already exists' });
-    }
+    // TODO: Replace with PostgreSQL queries
+    // Check if user exists
+    // const existingUser = await db.query('SELECT * FROM users WHERE email = $1', [email]);
+    // if (existingUser.rows.length > 0) {
+    //   return res.status(400).json({ message: 'User already exists' });
+    // }
 
-    // Create new user
-    const user = new User({
-      email,
-      password,
-      role,
-      profile
-    });
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    await user.save();
+    // Create user
+    // const result = await db.query(
+    //   'INSERT INTO users (email, password, role, profile) VALUES ($1, $2, $3, $4) RETURNING *',
+    //   [email, hashedPassword, role, profile]
+    // );
+    // const user = result.rows[0];
 
     // Generate token
-    const token = generateToken(user._id);
+    // const token = generateToken(user.id);
 
     res.status(201).json({
-      token,
-      user: {
-        id: user._id,
-        email: user.email,
-        role: user.role,
-        profile: user.profile
-      }
+      // token,
+      // user: {
+      //   id: user.id,
+      //   email: user.email,
+      //   role: user.role,
+      //   profile: user.profile
+      // }
+      message: 'Registration endpoint - TODO: Implement PostgreSQL'
     });
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
@@ -60,29 +62,33 @@ exports.login = async (req, res) => {
 
     const { email, password } = req.body;
 
+    // TODO: Replace with PostgreSQL queries
     // Find user
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({ message: 'Invalid credentials' });
-    }
+    // const result = await db.query('SELECT * FROM users WHERE email = $1', [email]);
+    // const user = result.rows[0];
+    
+    // if (!user) {
+    //   return res.status(400).json({ message: 'Invalid credentials' });
+    // }
 
     // Check password
-    const isMatch = await user.comparePassword(password);
-    if (!isMatch) {
-      return res.status(400).json({ message: 'Invalid credentials' });
-    }
+    // const isMatch = await bcrypt.compare(password, user.password);
+    // if (!isMatch) {
+    //   return res.status(400).json({ message: 'Invalid credentials' });
+    // }
 
     // Generate token
-    const token = generateToken(user._id);
+    // const token = generateToken(user.id);
 
     res.json({
-      token,
-      user: {
-        id: user._id,
-        email: user.email,
-        role: user.role,
-        profile: user.profile
-      }
+      // token,
+      // user: {
+      //   id: user.id,
+      //   email: user.email,
+      //   role: user.role,
+      //   profile: user.profile
+      // }
+      message: 'Login endpoint - TODO: Implement PostgreSQL'
     });
   } catch (error) {
     res.status(500).json({ message: 'Server error' });

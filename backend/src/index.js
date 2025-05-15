@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
 // Load environment variables
@@ -13,17 +12,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => {
-    console.error('MongoDB connection error:', err);
-    process.exit(1);
-  });
-
 // Routes
 app.use('/api/auth', require('./routes/auth'));
-app.use('/api/internships', require('./routes/internships'));
 
 // Error handling middleware
 app.use((err, req, res, next) => {

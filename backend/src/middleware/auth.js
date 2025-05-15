@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
 
 const auth = async (req, res, next) => {
   try {
@@ -10,8 +9,9 @@ const auth = async (req, res, next) => {
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findOne({ _id: decoded.userId });
-
+    // TODO: Replace with PostgreSQL user query
+    // const user = await db.query('SELECT * FROM users WHERE id = $1', [decoded.userId]);
+    
     if (!user) {
       throw new Error();
     }
