@@ -24,15 +24,6 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: 'Something went wrong!' });
 });
 
-app.get('/api/test', async (req, res) => {
-  try {
-    const result = await db.query('SELECT NOW()');
-    res.json({ success: true, time: result.rows[0].now });
-  } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
-  }
-});
-
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
