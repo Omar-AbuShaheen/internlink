@@ -1,0 +1,35 @@
+@import './theme.css';
+
+:root {
+    --bs-primary: var(--primary);
+    --bs-primary-rgb: 13, 110, 253;
+  }
+  
+  body {
+    background-color: var(--background);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  footer {
+    background-color: var(--primary-dark);
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  
+  .btn-primary {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+  }
+  
+  .text-primary {
+    color: var(--primary) !important;
+  }
+  
+  .border-primary {
+    border-color: var(--primary) !important;
+  }
+  
