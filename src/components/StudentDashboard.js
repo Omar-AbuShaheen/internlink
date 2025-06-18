@@ -119,28 +119,8 @@ function StudentDashboard() {
     fetchQuote();
   }, []);
 
-  const getResumeUrl = (url) => {
-    if (!url) return null;
-    // If it's already a full URL, return as is
-    if (url.startsWith('http')) return url;
-    // Otherwise, prepend the backend URL
-    return `http://localhost:5000${url}`;
-  };
-
   const handleViewDetails = (internshipId) => {
     navigate(`/internships/${internshipId}`);
-  };
-
-  const getStatusBadge = (status) => {
-    const variants = {
-      'pending': 'warning',
-      'Under Review': 'info',
-      'Accepted': 'success',
-      'approved': 'success',
-      'Rejected': 'danger',
-      'rejected': 'danger'
-    };
-    return <Badge bg={variants[status] || 'secondary'} className="status-badge">{status}</Badge>;
   };
 
   if (isLoading) {
