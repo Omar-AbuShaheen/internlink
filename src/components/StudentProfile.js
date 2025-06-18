@@ -78,21 +78,54 @@ function StudentProfile() {
     setIsSubmitting(true);
     setErrorMsg('');
     setSuccess(false);
+
+    // Validate required fields
+    if (!profile.first_name || !profile.last_name) {
+      setErrorMsg('First name and last name are required.');
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       const token = sessionStorage.getItem('token');
+      
+      // Create update object with all fields, setting empty strings to null
+      const updatedFields = {
+        first_name: profile.first_name,
+        last_name: profile.last_name,
+        phone: profile.phone || null,
+        university: profile.university || null,
+        major: profile.major || null,
+        graduation_year: profile.graduation_year || null,
+        bio: profile.bio || null,
+        profile_picture_url: profile.profile_picture_url || null,
+        resume_url: profile.resume_url || null
+      };
+
       const response = await fetch('http://localhost:5000/api/internships/student/profile', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify(profile)
+        body: JSON.stringify(updatedFields)
       });
-      if (!response.ok) throw new Error('Failed to update profile');
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to update profile');
+      }
+      
+      const data = await response.json();
+      // Update local state with the response data
+      setProfile({
+        ...initialState,  // Reset to initial state first
+        ...data          // Then apply server response
+      });
       setSuccess(true);
       setIsEditing(false);
     } catch (err) {
-      setErrorMsg('Failed to update profile. Please try again.');
+      setErrorMsg(err.message || 'Failed to update profile. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -111,20 +144,32 @@ function StudentProfile() {
       const token = sessionStorage.getItem('token');
       const formData = new FormData();
       formData.append('resume', resumeFile);
-      const res = await fetch('http://localhost:5000/api/auth/upload-resume', {
+      const res = await fetch('http://localhost:5000/api/internships/student/upload-resume', {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` },
         body: formData
       });
-      if (!res.ok) throw new Error('Failed to upload resume');
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.message || 'Failed to upload resume');
+      }
       const data = await res.json();
-      setProfile((prev) => ({ ...prev, resume_url: data.url }));
+      setProfile((prev) => ({ ...prev, resume_url: data.resume_url }));
       setResumeFile(null);
+      setSuccess(true);
     } catch (err) {
-      setUploadError('Failed to upload resume.');
+      setUploadError(err.message || 'Failed to upload resume. Please try again.');
     } finally {
       setUploading(false);
     }
+  };
+
+  const getResumeUrl = (url) => {
+    if (!url) return null;
+    // If it's already a full URL, return as is
+    if (url.startsWith('http')) return url;
+    // Otherwise, prepend the backend URL
+    return `http://localhost:5000${url}`;
   };
 
   if (loading) {
@@ -155,12 +200,12 @@ function StudentProfile() {
                   <Col md={6}><strong>Last Name:</strong> {profile.last_name}</Col>
                 </Row>
                 <Row className="mt-2">
-                  <Col md={6}><strong>Phone:</strong> {profile.phone}</Col>
-                  <Col md={6}><strong>University:</strong> {profile.university}</Col>
+                  <Col md={6}><strong>Phone:</strong> {profile.phone || 'Not provided'}</Col>
+                  <Col md={6}><strong>University:</strong> {profile.university || 'Not provided'}</Col>
                 </Row>
                 <Row className="mt-2">
-                  <Col md={6}><strong>Major:</strong> {profile.major}</Col>
-                  <Col md={6}><strong>Graduation Year:</strong> {profile.graduation_year}</Col>
+                  <Col md={6}><strong>Major:</strong> {profile.major || 'Not provided'}</Col>
+                  <Col md={6}><strong>Graduation Year:</strong> {profile.graduation_year || 'Not provided'}</Col>
                 </Row>
                 <Row className="mt-3">
                   <Col>
@@ -175,7 +220,7 @@ function StudentProfile() {
                                 <Button 
                                   variant="outline-success" 
                                   size="sm" 
-                                  href={profile.resume_url} 
+                                  href={getResumeUrl(profile.resume_url)} 
                                   target="_blank" 
                                   rel="noopener noreferrer"
                                 >
@@ -186,8 +231,8 @@ function StudentProfile() {
                               <div className="text-muted mt-2">No resume uploaded yet</div>
                             )}
                           </Col>
-                  <Col md={6}>
-                    <Form.Group controlId="resumeUpload">
+                          <Col md={6}>
+                            <Form.Group controlId="resumeUpload">
                               <Form.Label><strong>Upload New Resume:</strong></Form.Label>
                               <Form.Control 
                                 type="file" 
@@ -197,19 +242,19 @@ function StudentProfile() {
                                 className="mb-2"
                               />
                               <div className="small text-muted mb-2">Accepted: PDF, DOC, DOCX</div>
-                      <Button
-                        variant="primary"
+                              <Button
+                                variant="primary"
                                 size="sm"
-                        onClick={handleResumeUpload}
-                        disabled={!resumeFile || uploading}
-                      >
+                                onClick={handleResumeUpload}
+                                disabled={!resumeFile || uploading}
+                              >
                                 {uploading ? '⏳ Uploading...' : '⬆️ Upload Resume'}
-                      </Button>
+                              </Button>
                               {uploadError && <div className="text-danger mt-2 small">{uploadError}</div>}
                               {!uploadError && resumeFile && (
                                 <div className="text-success mt-2 small">✅ Ready to upload: {resumeFile.name}</div>
                               )}
-                    </Form.Group>
+                            </Form.Group>
                           </Col>
                         </Row>
                       </Card.Body>
@@ -217,10 +262,7 @@ function StudentProfile() {
                   </Col>
                 </Row>
                 <Row className="mt-2">
-                  <Col md={6}><strong>Profile Picture:</strong> {profile.profile_picture_url ? <a href={profile.profile_picture_url} target="_blank" rel="noopener noreferrer">View</a> : 'N/A'}</Col>
-                </Row>
-                <Row className="mt-2">
-                  <Col><strong>Bio:</strong> {profile.bio}</Col>
+                  <Col><strong>Bio:</strong> {profile.bio || 'Not provided'}</Col>
                 </Row>
                 <div className="d-flex justify-content-end mt-4">
                   <Button variant="primary" onClick={() => setIsEditing(true)}>Edit Profile</Button>
@@ -231,23 +273,25 @@ function StudentProfile() {
                 <Row>
                   <Col md={6}>
                     <Form.Group className="mb-3" controlId="profileFirstName">
-                      <Form.Label>First Name</Form.Label>
+                      <Form.Label>First Name <span className="text-danger">*</span></Form.Label>
                       <Form.Control
                         type="text"
                         name="first_name"
                         value={profile.first_name}
                         onChange={handleChange}
+                        required
                       />
                     </Form.Group>
                   </Col>
                   <Col md={6}>
                     <Form.Group className="mb-3" controlId="profileLastName">
-                      <Form.Label>Last Name</Form.Label>
+                      <Form.Label>Last Name <span className="text-danger">*</span></Form.Label>
                       <Form.Control
                         type="text"
                         name="last_name"
                         value={profile.last_name}
                         onChange={handleChange}
+                        required
                       />
                     </Form.Group>
                   </Col>

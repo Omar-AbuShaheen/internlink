@@ -119,6 +119,14 @@ function StudentDashboard() {
     fetchQuote();
   }, []);
 
+  const getResumeUrl = (url) => {
+    if (!url) return null;
+    // If it's already a full URL, return as is
+    if (url.startsWith('http')) return url;
+    // Otherwise, prepend the backend URL
+    return `http://localhost:5000${url}`;
+  };
+
   const handleViewDetails = (internshipId) => {
     navigate(`/internships/${internshipId}`);
   };
