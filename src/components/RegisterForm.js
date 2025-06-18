@@ -6,7 +6,8 @@ import { FaEnvelope, FaLock, FaUser } from 'react-icons/fa';
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -58,9 +59,9 @@ const RegisterForm = () => {
           email: formData.email,
           password: formData.password,
           role: formData.role,
-          firstName: formData.name,
-          lastName: '',
-          companyName: formData.name,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          companyName: formData.role === 'company' ? `${formData.firstName} ${formData.lastName}` : '',
           about: ''
         }),
       });
@@ -127,15 +128,34 @@ const RegisterForm = () => {
 
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label className="form-label" htmlFor="name">Full Name</label>
+              <label className="form-label" htmlFor="firstName">First Name</label>
               <div className="input-wrapper">
                 <input
                   type="text"
-                  id="name"
-                  name="name"
+                  id="firstName"
+                  name="firstName"
                   className="form-input"
-                  placeholder="Enter your full name"
-                  value={formData.name}
+                  placeholder="Enter your first name"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  required
+                />
+                <span className="input-icon">
+                  <FaUser />
+                </span>
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label className="form-label" htmlFor="lastName">Last Name</label>
+              <div className="input-wrapper">
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  className="form-input"
+                  placeholder="Enter your last name"
+                  value={formData.lastName}
                   onChange={handleChange}
                   required
                 />
