@@ -1,0 +1,44 @@
+.company-dashboard {
+    padding: 20px;
+    background: var(--background);
+    border-radius: 18px;
+  }
+  
+.stat-card {
+  border-radius: 14px;
+  border-width: 2px !important;
+  box-shadow: 0 2px 12px rgba(13,110,253,0.06);
+  transition: transform 0.18s, box-shadow 0.18s;
+  background: #fff;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 6px 24px rgba(13,110,253,0.10);
+}
+
+.stat-icon {
+  font-size: 2rem;
+}
+
+.stat-label {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.alert {
+  border-radius: 10px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 991px) {
+  .company-dashboard {
+    border-radius: 8px;
+    padding: 0.5rem;
+  }
+  .stat-card {
+    border-radius: 8px;
+  }
+}
+  
