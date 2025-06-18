@@ -89,10 +89,29 @@ function StudentDashboard() {
     const fetchQuote = async () => {
       try {
         const res = await fetch('https://api.quotable.io/random?tags=success,motivation');
+        if (!res.ok) {
+          throw new Error('Failed to fetch quote');
+        }
         const data = await res.json();
-        setQuote(data);
+        if (data && data.content && data.author) {
+          setQuote({
+            content: data.content,
+            author: data.author
+          });
+        } else {
+          // Fallback quote if API fails
+          setQuote({
+            content: "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+            author: "Winston Churchill"
+          });
+        }
       } catch (err) {
-        setQuote(null);
+        console.error('Error fetching quote:', err);
+        // Fallback quote if API fails
+        setQuote({
+          content: "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+          author: "Winston Churchill"
+        });
       }
     };
 
@@ -159,9 +178,15 @@ function StudentDashboard() {
 
       {/* Quote Card */}
       {quote && (
-        <div className="quote-card">
-          <p>"{quote.content}"</p>
-          <span className="quote-author">- {quote.author}</span>
+        <div className="quote-card mb-4">
+          <div className="quote-content">
+            <i className="fas fa-quote-left quote-icon"></i>
+            <p className="quote-text">{quote.content}</p>
+            <i className="fas fa-quote-right quote-icon"></i>
+          </div>
+          <div className="quote-author">
+            - {quote.author}
+          </div>
         </div>
       )}
 
@@ -217,28 +242,51 @@ function StudentDashboard() {
                       <td>
                         <div className="d-flex align-items-center">
                           <FaBuilding className="me-2 text-muted" />
-                          {application.company_name}
+                          {application.company_name || 'DevoYard'}
                         </div>
                       </td>
-                      <td>{application.position}</td>
+                      <td>{application.position || application.title}</td>
                       <td>
                         <div className="d-flex align-items-center">
                           <FaMapMarkerAlt className="me-2 text-muted" />
-                          {application.location}
+                          {application.location || 'Remote'}
                         </div>
                       </td>
                       <td>
                         <div className="d-flex align-items-center">
                           <FaCalendarAlt className="me-2 text-muted" />
-                          {new Date(application.applied_date).toLocaleDateString()}
+                          {application.applied_date ? 
+                            new Date(application.applied_date).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'short',
+                              day: 'numeric'
+                            }) 
+                            : new Date().toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'short',
+                              day: 'numeric'
+                            })
+                          }
                         </div>
                       </td>
-                      <td>{getStatusBadge(application.status)}</td>
+                      <td>
+                        <Badge 
+                          bg={
+                            application.status === 'approved' ? 'success' :
+                            application.status === 'pending' ? 'warning' :
+                            application.status === 'rejected' ? 'danger' :
+                            'secondary'
+                          }
+                          className="status-badge"
+                        >
+                          {application.status || 'pending'}
+                        </Badge>
+                      </td>
                       <td>
                         <Button
                           variant="outline-primary"
                           size="sm"
-                          className="action-button"
+                          className="action-button d-flex align-items-center"
                           onClick={() => handleViewDetails(application.internship_id)}
                         >
                           <FaExternalLinkAlt className="me-1" />
