@@ -29,7 +29,7 @@ import StudentProfile from './components/StudentProfile';
 import CompanyProfile from './components/CompanyProfile';
 
 
-<h1>Welcome to InternLink (Last Version)</h1>
+<h1>Welcome to InternLink "Omar Abu Shaheen "</h1>
 
 // to Hidden the footer on the login and register page
 const AppContent = () => {
