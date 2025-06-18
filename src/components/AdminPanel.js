@@ -1,7 +1,7 @@
 // src/components/AdminPanel.js
 import React, { useEffect, useState, useContext } from 'react';
 import { Container, Table, Button, Row, Col, Card, Alert, Form, Badge, Spinner } from 'react-bootstrap';
-import { FaUsers, FaBuilding, FaClipboardList, FaCheckCircle, FaBell, FaChartBar, FaCheck, FaTimes, FaTrash, FaUserShield, FaGraduationCap, FaCog } from 'react-icons/fa';
+import { FaUsers, FaBuilding, FaClipboardList, FaBell, FaCheck, FaTimes, FaTrash, FaUserShield, FaGraduationCap, FaCog } from 'react-icons/fa';
 import '../styles/AdminPanel.css';
 import { AuthContext } from '../context/AuthContext';
 

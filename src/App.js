@@ -16,7 +16,6 @@ import InternshipDetail from './components/InternshipDetail';
 import StudentDashboard from './components/StudentDashboard';
 import CompanyDashboard from './components/CompanyDashboard';
 import AdminPanel from './components/AdminPanel';
-import ProfilePage from './components/ProfilePage';
 import Footer from './components/Footer';
 import PostInternshipForm from './components/PostInternshipForm';
 import SiteMap from './components/SiteMap';
@@ -27,9 +26,6 @@ import ApplicantsList from './components/ApplicantsList';
 import EditInternshipForm from './components/EditInternshipForm';
 import StudentProfile from './components/StudentProfile';
 import CompanyProfile from './components/CompanyProfile';
-
-
-<h1>Welcome to InternLink "Omar Abu Shaheen "</h1>
 
 // to Hidden the footer on the login and register page
 const AppContent = () => {
