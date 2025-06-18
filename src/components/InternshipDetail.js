@@ -1,19 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { Container, Card, Button, Badge, Row, Col, Spinner, Alert, Modal } from 'react-bootstrap';
-import { FaMapMarkerAlt, FaBuilding, FaCheckCircle } from 'react-icons/fa';
+import { useParams, Link } from 'react-router-dom';
+import { Container, Card, Button, Badge, Row, Col, Spinner, Alert } from 'react-bootstrap';
+import { FaMapMarkerAlt, FaBuilding } from 'react-icons/fa';
 import '../styles/InternshipDetail.css';
 import { AuthContext } from '../context/AuthContext';
 
 function InternshipDetail() {
   const { id } = useParams();
-  const navigate = useNavigate();
   const [internship, setInternship] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showApplyModal, setShowApplyModal] = useState(false);
-  const [isApplying, setIsApplying] = useState(false);
-  const [applicationSuccess, setApplicationSuccess] = useState(false);
   const [applyStatus, setApplyStatus] = useState('idle');
   const [applyMsg, setApplyMsg] = useState('');
   const [yesNoResult, setYesNoResult] = useState(null);
@@ -191,67 +187,6 @@ function InternshipDetail() {
           </Card>
         </Col>
       </Row>
-
-      {/* Apply Modal */}
-      <Modal 
-        show={showApplyModal} 
-        onHide={() => !isApplying && setShowApplyModal(false)}
-        centered
-      >
-        <Modal.Header closeButton={!isApplying}>
-          <Modal.Title>Apply for {internship.title}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {applicationSuccess ? (
-            <div className="text-center py-4">
-              <FaCheckCircle className="text-success mb-3" size={48} />
-              <h4>Application Submitted!</h4>
-              <p className="text-muted">Your application has been successfully submitted.</p>
-            </div>
-          ) : (
-            <>
-              <p>Are you sure you want to apply for this position?</p>
-              <p className="text-muted small">
-                Your profile and resume will be shared with {internship.company_name}.
-              </p>
-            </>
-          )}
-        </Modal.Body>
-        <Modal.Footer>
-          {!applicationSuccess && (
-            <>
-              <Button 
-                variant="secondary" 
-                onClick={() => setShowApplyModal(false)}
-                disabled={isApplying}
-              >
-                Cancel
-              </Button>
-              <Button 
-                variant="success" 
-                onClick={handleApply}
-                disabled={isApplying}
-              >
-                {isApplying ? (
-                  <>
-                    <Spinner
-                      as="span"
-                      animation="border"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                      className="me-2"
-                    />
-                    Submitting...
-                  </>
-                ) : (
-                  'Submit Application'
-                )}
-              </Button>
-            </>
-          )}
-        </Modal.Footer>
-      </Modal>
     </Container>
   );
 }

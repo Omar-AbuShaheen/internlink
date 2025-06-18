@@ -8,8 +8,6 @@ import { AuthContext } from '../context/AuthContext';
 // Import images
 import heroBg from '../images/hero-bg.jpg';
 import marketingLogo from '../images/marketing-logo.png';
-import techLogo from '../images/tech-logo.png';
-import designLogo from '../images/design-logo.png';
 
 function HomePage() {
   const { role } = useContext(AuthContext);
@@ -28,22 +26,6 @@ function HomePage() {
     };
     fetchInternships();
   }, []);
-
-  const handleFindInternships = () => {
-    navigate('/internships');
-  };
-
-  const handlePostJob = () => {
-    navigate('/company/dashboard/post-job');
-  };
-
-  const handleApplyNow = (internshipId) => {
-    navigate(`/internships/${internshipId}`);
-  };
-
-  const handleGetStarted = () => {
-    navigate('/register');
-  };
 
   return (
     <div className="homepage">
@@ -226,7 +208,7 @@ function HomePage() {
                     <Button 
                       variant="primary" 
                         className="w-100 modern-apply-btn"
-                        onClick={() => handleApplyNow(internship.id)}
+                        onClick={() => navigate(`/internships/${internship.id}`)}
                     >
                       Apply Now
                         <FaArrowRight className="ms-2" size={14} />
@@ -266,10 +248,11 @@ function HomePage() {
               <Button 
                 variant="light" 
                 size="lg" 
-                className="px-4"
-                onClick={handleGetStarted}
+                className="px-5"
+                onClick={() => navigate('/register')}
               >
-                Get Started
+                Get Started Now
+                <FaArrowRight className="ms-2" />
               </Button>
             </Col>
           </Row>

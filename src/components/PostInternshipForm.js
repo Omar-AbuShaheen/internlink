@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Container, Card, Form, Button, Row, Col, Alert, Spinner, Badge } from 'react-bootstrap';
+import { Container, Card, Form, Button, Row, Col, Alert, Spinner } from 'react-bootstrap';
 import { FaPlus, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaMapMarkerAlt, FaListAlt } from 'react-icons/fa';
 import { AuthContext } from '../context/AuthContext';
 import { jwtDecode } from 'jwt-decode';
@@ -11,6 +11,7 @@ const initialState = {
   type: '',
   deadline: '',
   skills: '',
+  duration: '',
 };
 
 const typeOptions = ['On-site', 'Remote', 'Hybrid'];

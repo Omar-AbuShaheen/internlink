@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Navbar, Nav, Button, Container, Image, Dropdown } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
-import { FaUser, FaSignOutAlt, FaCog, FaBriefcase, FaHome, FaInfoCircle, FaConciergeBell, FaTachometerAlt, FaUserShield } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import { FaUser, FaSignOutAlt, FaBriefcase, FaHome, FaInfoCircle, FaConciergeBell, FaTachometerAlt, FaUserShield } from 'react-icons/fa';
 import logo from '../images/logo.png';
 import '../styles/NavBar.css';
 import { AuthContext } from '../context/AuthContext';
